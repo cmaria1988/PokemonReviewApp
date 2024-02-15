@@ -5,15 +5,14 @@ using PokemonReviewApp.Interfaces;
 using PokemonReviewApp.Repository;
 using System.Text.Json.Serialization;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
-builder.Services.AddControllers().AddJsonOptions(x=>
-                x.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -44,6 +43,9 @@ void SeedData(IHost app)
         service.SeedDataContext();
     }
 }
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
